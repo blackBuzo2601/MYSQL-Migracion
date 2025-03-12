@@ -57,15 +57,15 @@ Ahora solo verificamos que la migración se haya hecho correctamente con una con
 SELECT nombre_empresa FROM empresa WHERE codigo_actividad_empresa = 115111;
 ```
 
-# CONFLICTOS PRESENTADOS
+## CONFLICTOS PRESENTADOS
 
-## Conflicto al leer data local
+### Conflicto al leer data local
 
 Inicialmente tenia los archivos CSV en la misma ruta de la terminal donde me encontraba cuando estaba en mi servidor de MySQL pero me arrojaba un error:
 **ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option**
 El error se debe a que MySQL cuando está configurado con la opción **--secure-file-priv** limita las rutas por dodne podemos cargar archivos con el comando **LOAD DATA INFILE**. Una forma rápida de solucionarlo sin tener que modificar dicha configuración es mover todos los archivos CSV a la ruta: /var/lib/mysql-files/ . Cuando MySQL está configurado con --secure-file-priv, el servidor solo permite el acceso a archivos que se encuentren en una de las rutas permitidas en dicha configuración, y esa ruta es la ruta de seguridad especificada.
 
-## Conflicto con tabulaciones indeseadas al hacer consultas pequeñas
+### Conflicto con tabulaciones indeseadas al hacer consultas pequeñas
 
 Otro problema muy grande que tuve, fue cuando ya había migrado todos los datos de todos los archivos CSV. Cuando hacia consultas pequeñas, por alguna razón que desconocía en ese momento se estaban imprimiendo con tabulaciones que deformaban la impresión de los resultados en consola. Revisé muchas veces que los archivos CSV no tuvieran espacios vacios ni tabulaciones adicionales y a su vez, intentaba convertir nuevamente a CSV con el formato UTF-8.
 El problema principal es por **como maneja Windows los saltos de linea** a diferencia de Linux, pues mi servidor MySql lo estoy ejecutando en mi entorno WSL y los archivos CSV los convertí desde Windows. Por lo que los saltos de linea estaban escritos como "\r\n" y no "\n"
