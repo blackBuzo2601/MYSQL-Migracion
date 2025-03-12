@@ -57,7 +57,7 @@ Ahora solo verificamos que la migración se haya hecho correctamente con una con
 SELECT nombre_empresa FROM empresa WHERE codigo_actividad_empresa = 115111;
 ```
 
-### CONFLICTOS PRESENTADOS
+# CONFLICTOS PRESENTADOS
 
 ## Conflicto al leer data local
 
