@@ -1,7 +1,8 @@
-#Proceso de migración de base de datos de Excel a un servidor MySQL
+# Proceso de migración de base de datos de Excel a un servidor MySQL
+
 En este repositorio tendra los pasos detallados de como migrar una base de datos con un volumen enorme de datos a un servidor MySQL, explicando también los conflictos que se presentaron en el proceso y como se solucionaron.
 
-##PROCEDIMIENTO
+## PROCEDIMIENTO
 
 ### I. Normalización y diseño de esquema
 
@@ -15,7 +16,7 @@ Después de tener todos los datos en formato CSV, procedí a crear la base de da
 
 Para no tener problemas al momento de insertar datos en las tablas, se comienza insertando los datos en las tablas que no tienen dependencia de otras tablas, porque de ser así, nos va a arrojar un error en la consola cuando insertemos los datos en una tabla, pues no va a existir la primary key en las otras tablas para relacionarse. Así que migramos primero los datos de la tabla actividades, después municipio, después contacto_empresa, posteriormnete ubicacion_empresa y al último la migración de la tabla empresa.
 
-####Ejemplo de inserción para cada columna
+#### Ejemplo de inserción para cada columna
 
 ```bash
 LOAD DATA INFILE '/ruta/del/csv/archivo.csv'
